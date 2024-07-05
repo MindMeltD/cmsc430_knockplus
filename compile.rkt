@@ -298,10 +298,10 @@
     ;; TODO
     ;; This code just pops and goes to next clause.
     ;; Replace with code that implements pattern.
-    [(List ps)(list (seq
-            (Add rsp (* 8 (length cm)))
-            (Jmp next))
-           cm)]
+    [(List ps) (match ps
+                 ['() (list (seq) cm)]
+                 [(cons h t) (compile-pattern (Cons (car ps) (List (cdr ps))) cm next)]
+                 )]
     ;; TODO
     ;; This code just pops and goes to next clause.
     ;; Replace with code that implements pattern.
