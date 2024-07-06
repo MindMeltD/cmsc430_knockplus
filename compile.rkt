@@ -323,7 +323,7 @@
     ;; Replace with code that implements pattern.
     [(Pred f) (let ((ok (gensym 'okpred)))
      (list (seq
-            (Call f)
+            (Call (symbol->label f))
             (Cmp rax (value->bits #t))
             (Je ok)
             (Add rsp (* 8 (length cm)))
